@@ -12,12 +12,12 @@ import example.services.QuoteService;
 
 @RestController
 public class QuoteController {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(QuoteController.class);
 
 	@Autowired
 	private QuoteService quoteService;
-	
+
 	@RequestMapping("/quotes/{id}")
 	public Quote getQuote(@PathVariable("id") Long id) {
 		log.info("Servicing REST API request for quote id=" + id);

@@ -9,23 +9,25 @@ import org.springframework.web.client.RestTemplate;
 import example.models.Quote;
 
 public interface QuoteService {
-	
+
 	public Quote getQuoteById(Long id);
-	
+
 	@Component
 	public static class QuoteServiceImpl implements QuoteService {
-		
+
 		private static final Logger log = LoggerFactory.getLogger(QuoteServiceImpl.class);
-		
+
 		@Override
 		@Cacheable("quotes")
 		public Quote getQuoteById(Long id) {
 			log.info("Actually fetching quote now for id=" + id);
-			
+
 			RestTemplate restTemplate = new RestTemplate();
-	        Quote quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random", Quote.class);
-	        quote.getValue().setId(id);
-	        
+			Quote quote = restTemplate.getForObject(
+					"http://gturnquist-quoters.cfapps.io/api/random",
+					Quote.class);
+			quote.getValue().setId(id);
+
 			return quote;
 		}
 	}

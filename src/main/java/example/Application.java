@@ -16,19 +16,19 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-    private static final Logger log = LoggerFactory.getLogger(Application.class);
+	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
-    public static void main(String args[]) {
-        SpringApplication.run(Application.class);
-    }
-    
-    @Bean
-    public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("quotes");
-    }
+	public static void main(String args[]) {
+		SpringApplication.run(Application.class);
+	}
 
-    @Override
-    public void run(String... strings) throws Exception {
-        log.info("I'm really started now");
-    }
+	@Bean
+	public CacheManager cacheManager() {
+		return new ConcurrentMapCacheManager("quotes");
+	}
+
+	@Override
+	public void run(String... strings) throws Exception {
+		log.info("I'm really started now");
+	}
 }

@@ -15,15 +15,15 @@ import example.services.QuoteService;
 public class QuotesTask {
 
 	private static final Logger log = LoggerFactory.getLogger(QuotesTask.class);
-	
+
 	@Autowired
 	private QuoteService quoteService;
-	
+
 	private AtomicLong quoteIds = new AtomicLong(0);
 
-    @Scheduled(fixedRate = 10000)
-    public void queryQuote() {
-    	Quote quote = quoteService.getQuoteById(quoteIds.getAndIncrement());
-        log.info(quote.toString());
-    }
+	@Scheduled(fixedRate = 10000)
+	public void queryQuote() {
+		Quote quote = quoteService.getQuoteById(quoteIds.getAndIncrement());
+		log.info(quote.toString());
+	}
 }
